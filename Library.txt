@@ -712,15 +712,19 @@ function Linux.Create(config)
             local DropPadding = Linux.Instance("UIPadding", {
                 Parent = DropFrame,
                 PaddingLeft = UDim.new(0, 5),
-                PaddingTop = UDim.new(0, 5)
+                PaddingTop = UDim.new(0, 5),
+                PaddingBottom = UDim.new(0, 5)
             })
 
-            Linux.Instance("UICorner", {
+            -- Ajuste no UICorner para garantir que o arredondamento seja visível
+            local DropFrameCorner = Linux.Instance("UICorner", {
                 Parent = DropFrame,
-                CornerRadius = UDim.new(0, 4)
+                CornerRadius = UDim.new(0, 6) -- Aumentado para 6 pixels para maior visibilidade
             })
-            Linux:ApplyBorder(DropFrame)
-            Linux:ApplySecondaryBorder(DropFrame)
+
+            -- Ajuste nas bordas para seguir o arredondamento
+            local DropFrameBorder = Linux:ApplyBorder(DropFrame)
+            local DropFrameSecondaryBorder = Linux:ApplySecondaryBorder(DropFrame)
 
             local Options = config.Options or {}
             local IsOpen = false
@@ -730,9 +734,10 @@ function Linux.Create(config)
                 local optionHeight = 28
                 local paddingBetween = 2
                 local paddingTop = 5
+                local paddingBottom = 5
                 local maxHeight = 150
                 local numOptions = #Options
-                local calculatedHeight = numOptions * optionHeight + (numOptions - 1) * paddingBetween + paddingTop
+                local calculatedHeight = numOptions * optionHeight + (numOptions - 1) * paddingBetween + paddingTop + paddingBottom
                 local finalHeight = math.min(calculatedHeight, maxHeight)
                 if finalHeight < 0 then finalHeight = 0 end
 
@@ -908,15 +913,19 @@ function Linux.Create(config)
             local DropPadding = Linux.Instance("UIPadding", {
                 Parent = DropFrame,
                 PaddingLeft = UDim.new(0, 5),
-                PaddingTop = UDim.new(0, 5)
+                PaddingTop = UDim.new(0, 5),
+                PaddingBottom = UDim.new(0, 5)
             })
 
-            Linux.Instance("UICorner", {
+            -- Ajuste no UICorner para garantir que o arredondamento seja visível
+            local DropFrameCorner = Linux.Instance("UICorner", {
                 Parent = DropFrame,
-                CornerRadius = UDim.new(0, 4)
+                CornerRadius = UDim.new(0, 6) -- Aumentado para 6 pixels para maior visibilidade
             })
-            Linux:ApplyBorder(DropFrame)
-            Linux:ApplySecondaryBorder(DropFrame)
+
+            -- Ajuste nas bordas para seguir o arredondamento
+            local DropFrameBorder = Linux:ApplyBorder(DropFrame)
+            local DropFrameSecondaryBorder = Linux:ApplySecondaryBorder(DropFrame)
 
             local Options = config.Options or {}
             local IsOpen = false
@@ -926,10 +935,11 @@ function Linux.Create(config)
                 local optionHeight = 28
                 local paddingBetween = 2
                 local paddingTop = 5
+                local paddingBottom = 5
                 local maxHeight = 150
                 local numOptions = #Options
-                local calculatedHeight = numOptions * optionHeight + (numOptions - 1) * paddingBetween + paddingTop
-                finalHeight = math.min(calculatedHeight, maxHeight)
+                local calculatedHeight = numOptions * optionHeight + (numOptions - 1) * paddingBetween + paddingTop + paddingBottom
+                local finalHeight = math.min(calculatedHeight, maxHeight)
                 if finalHeight < 0 then finalHeight = 0 end
 
                 local tween = TweenInfo.new(0.2, Enum.EasingStyle.Quad)
@@ -1212,8 +1222,8 @@ function Linux.Create(config)
             local TextBox = Linux.Instance("TextBox", {
                 Parent = Input,
                 BackgroundColor3 = Linux.Theme.Toggle,
-                Size = UDim2.new(0.5, -10, 0, 24),
-                Position = UDim2.new(0.5, 5, 0.5, -12),
+                Size = UDim2.new(0.3, -10, 0, 24), -- Reduzido de 0.5 para 0.3 (30% da largura)
+                Position = UDim2.new(0.7, 5, 0.5, -12), -- Ajustado para manter alinhamento à direita
                 Font = Enum.Font.SourceSans,
                 Text = config.Default or "",
                 PlaceholderText = config.Placeholder or "Text Here",
